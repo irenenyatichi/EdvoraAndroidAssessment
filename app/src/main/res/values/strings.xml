@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Edvora Android Assessment</string>
+    <string-array name="planets_array">
+        <item>Products</item>
+        <item>State</item>
+        <item>City</item>
+    </string-array>
+</resources>
