@@ -56,7 +56,8 @@
         app:layout_constraintStart_toEndOf="@+id/tvFilter"
         app:layout_constraintTop_toTopOf="@+id/tvFilter"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24" />
+        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"
+        android:contentDescription="@string/ContentDescriotion" />
 
     <Button
         android:id="@+id/btnClearFilter"
@@ -70,17 +71,17 @@
         android:text="Clear Filter"
         android:textAllCaps="false"
         android:textFontWeight="400"
-        android:textSize="16dp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:targetApi="p" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerviewlist"
+        android:id="@+id/rvList"
         android:layout_width="414dp"
         android:layout_height="622dp"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnClearFilter"
         tools:listitem="@layout/cards_recycler" />
