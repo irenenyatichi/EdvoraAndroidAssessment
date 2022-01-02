@@ -46,18 +46,18 @@
         app:layout_constraintTop_toTopOf="@+id/spinner"
         app:lineHeight="20dp" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginStart="60dp"
-        android:background="@drawable/spinner_background"
-        app:layout_constraintBottom_toBottomOf="@+id/tvFilter"
-        app:layout_constraintStart_toEndOf="@+id/tvFilter"
-        app:layout_constraintTop_toTopOf="@+id/tvFilter"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"
-        android:contentDescription="@string/ContentDescriotion" />
+<!--    <ImageView-->
+<!--        android:id="@+id/imageView"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="24dp"-->
+<!--        android:layout_marginStart="60dp"-->
+<!--        android:background="@drawable/spinner_background"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/tvFilter"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/tvFilter"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/tvFilter"-->
+<!--        app:layout_constraintVertical_bias="0.0"-->
+<!--        app:srcCompat="@drawable/ic_baseline_arrow_drop_down_24"-->
+<!--        android:contentDescription="@string/ContentDescriotion" />-->
 
     <Button
         android:id="@+id/btnClearFilter"
