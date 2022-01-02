@@ -2,17 +2,24 @@ package com.example.edvoraandroidassessment
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edvoraandroidassessment.API.ApiClient
 import com.example.edvoraandroidassessment.API.ApiInterface
 import com.example.edvoraandroidassessment.Adapter.CardAdapter
 import com.example.edvoraandroidassessment.Models.Details
+import com.google.gson.GsonBuilder
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.IOException
 import java.util.ArrayList
 
 
@@ -41,20 +48,24 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun getDetails() {
+        val url = "https://assessment-edvora.herokuapp.com"
         val retrofit = ApiClient.buildApiClient(ApiInterface::class.java)
-        val request = retrofit.getProductName(); retrofit.getBrandName(); retrofit.getProductDate();
-        retrofit.getProductDescription(); retrofit.getProductImages();retrofit.getProductLocation();
-        retrofit.getProductPrice()
-        request.enqueue(object : Callback<List<Details>> {
-            override fun onResponse(call: Call<List<Details>>, response: Response<List<Details>>) {
-                if (response.isSuccessful) {
-                    Log.d("images","${response.body()}")
-                }
-            }
+        val request = Request.Builder().url(url).build()
+        val client = OkHttpClient()
+        with(client) {
+            newCall(request).enqueue(object : okhttp3.Callback {
+                override fun onFailure(call: okhttp3.Call, e: IOException) { println("Failed to Execute Request") }
 
-            override fun onFailure(call: Call<List<Details>>, t: Throwable) {
-                Toast.makeText(baseContext, "Failed", Toast.LENGTH_LONG).show()
-            }
-        })
+                override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                    val body = response.body.toString()
+                    println(body)
+
+                    val gson = GsonBuilder().create()
+
+                    val feed = gson.fromJson(body, cardDetails::class.java)
+                }
+            })
+        }
     }
 }
+class cardDetails(val card: List<Details>)

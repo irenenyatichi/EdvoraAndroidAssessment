@@ -5,44 +5,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.example.edvoraandroidassessment.Models.Details
 import com.example.edvoraandroidassessment.R
+import java.lang.reflect.Constructor
 
-class CardAdapter(
-    private val data : List<Details>
-): RecyclerView.Adapter<CardAdapter.ViewHolder>(){
+class CardAdapter(private val data : List<Details>): RecyclerView.Adapter<CardAdapter.ViewHolder>() {
 
     private val item: MutableList<CardView>
 
-    init {
-        this.item = ArrayList()
-    }
+    init { this.item = ArrayList() }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardAdapter.ViewHolder {
         val a = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cards,parent, false)
+            .inflate(R.layout.cards, parent, false)
         return ViewHolder(a)
     }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val video = data.size.javaClass
         holder.tvProductName.text = data[position].product_name
         holder.tvBrandName.text = data[position].brand_name
         holder.tvCost.text = data[position].price
         holder.tvDate.text = data[position].dateTime
         holder.tvLocation.text = data[position].address
         holder.tvDescription.text = data[position].description
-//        holder.ivProduct = item[position].
     }
 
-    override fun getItemCount(): Int {  return data.size}
+    override fun getItemCount(): Int {
+        return data.count()
+    }
 
     inner class ViewHolder
     internal constructor(
         itemView: View
-    ) : RecyclerView.ViewHolder(itemView){
-        var cdcard: CardView = itemView.findViewWithTag("@+id/cdCard")
-        var ivProduct: ImageView = itemView.findViewWithTag("@+id/ivProduct")
+    ) : RecyclerView.ViewHolder(itemView) {
         var tvProductName: TextView = itemView.findViewWithTag("@+id/tvProductName")
         var tvBrandName: TextView = itemView.findViewWithTag("@+id/tvBrandName")
         var tvDollar: TextView = itemView.findViewWithTag("@+id/tvDollar")
